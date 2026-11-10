@@ -8,10 +8,10 @@ import { Fill } from "./Fill";
 import { Icon } from "./Icon";
 import { Reveal } from "./Reveal";
 import { SectionHeader, SubHeading } from "./SectionHeader";
-import { navSections } from "./nav";
+import { sectionNav } from "./nav";
 
 export function YourStay() {
-  const s = navSections[1];
+  const s = sectionNav.stay;
   return (
     <section id={s.id} className="scroll-mt-20 bg-secondary py-20 sm:py-28">
       <div className="section-shell">

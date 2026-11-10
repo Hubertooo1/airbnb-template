@@ -6,10 +6,10 @@ import { Icon } from "./Icon";
 import { MapsButton } from "./LinkButtons";
 import { Reveal } from "./Reveal";
 import { SectionHeader, SubHeading } from "./SectionHeader";
-import { navSections } from "./nav";
+import { sectionNav } from "./nav";
 
 export function BeforeYouArrive() {
-  const s = navSections[0];
+  const s = sectionNav.arrive;
   return (
     <section id={s.id} className="scroll-mt-20 border-t border-border py-20 sm:py-28">
       <div className="section-shell">

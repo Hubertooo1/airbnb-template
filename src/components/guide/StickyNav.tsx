@@ -21,7 +21,8 @@ export function StickyNav() {
     const io = new IntersectionObserver(
       (entries) => {
         const visible = entries.filter((e) => e.isIntersecting);
-        if (visible.length) setActive(visible[0].target.id);
+        const first = visible[0];
+        if (first) setActive(first.target.id);
       },
       { rootMargin: "-45% 0px -50% 0px" },
     );

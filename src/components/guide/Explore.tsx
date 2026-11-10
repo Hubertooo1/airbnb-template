@@ -19,7 +19,7 @@ import { Fill } from "./Fill";
 import { MapsButton } from "./LinkButtons";
 import { Reveal } from "./Reveal";
 import { SectionHeader, SubHeading } from "./SectionHeader";
-import { navSections } from "./nav";
+import { sectionNav } from "./nav";
 
 const images: Record<NonNullable<Recommendation["image"]>, string> = {
   restaurant: restaurantImg,
@@ -76,7 +76,7 @@ function RecommendationCard({ rec }: { rec: Recommendation }) {
 }
 
 export function Explore() {
-  const s = navSections[2];
+  const s = sectionNav.explore;
   const [filter, setFilter] = useState<ExploreCategory | "All">("All");
   const list = filter === "All" ? recommendations : recommendations.filter((r) => r.category === filter);
 

@@ -9,7 +9,7 @@ export type NavSection = {
   icon: LucideIcon;
 };
 
-export const navSections: NavSection[] = [
+const list = [
   {
     id: "before-you-arrive",
     number: "01",
@@ -42,4 +42,12 @@ export const navSections: NavSection[] = [
     description: "Check-out, emergency and contact",
     icon: LifeBuoy,
   },
-];
+] as const satisfies readonly NavSection[];
+
+export const navSections: readonly NavSection[] = list;
+export const sectionNav = {
+  arrive: list[0],
+  stay: list[1],
+  explore: list[2],
+  essentials: list[3],
+};
