@@ -27,24 +27,26 @@ export function CallButton({
   phone,
   label,
   variant = "default",
+  size = "default",
   className,
 }: {
   phone: string;
   label: string;
   variant?: "default" | "outline" | "destructive" | "photo";
+  size?: "default" | "sm";
   className?: string;
 }) {
   const href = telHref(phone);
   if (!href) {
     return (
-      <Button variant={variant} disabled className={className} title="Phone number not added yet">
+      <Button variant={variant} size={size} disabled className={className} title="Phone number not added yet">
         <Phone strokeWidth={1.75} />
         {label}
       </Button>
     );
   }
   return (
-    <Button asChild variant={variant} className={className}>
+    <Button asChild variant={variant} size={size} className={className}>
       <a href={href}>
         <Phone strokeWidth={1.75} />
         {label}

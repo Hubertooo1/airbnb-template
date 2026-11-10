@@ -150,7 +150,7 @@ export function Essentials() {
                 </p>
                 <div className="mt-5 flex flex-wrap gap-2">
                   <MapsButton query={`${p.name} ${p.address}`} size="sm" label="Directions" />
-                  <CallButton phone={p.phone} label="Call" variant="outline" />
+                  <CallButton phone={p.phone} label="Call" variant="outline" size="sm" />
                 </div>
               </Reveal>
             ))}
