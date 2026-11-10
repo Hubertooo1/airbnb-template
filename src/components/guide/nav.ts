@@ -39,7 +39,7 @@ const list = [
     number: "04",
     label: "Essentials",
     short: "Essentials",
-    description: "Check-out, emergency and contact",
+    description: "Check-out, contact and help",
     icon: LifeBuoy,
   },
 ] as const satisfies readonly NavSection[];
