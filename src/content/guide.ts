@@ -180,7 +180,7 @@ export const checkout = {
 
 export const problemSteps = [
   "Check this guide and the FAQ below — the answer may be here.",
-  "Send us a message through Airbnb or call us on the number below.",
+  "Send us a message through Airbnb or call us on the number above.",
   "Tell us what happened and, if you can, send a photo.",
 ];
 
