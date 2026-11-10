@@ -1,12 +1,12 @@
 import { useState } from "react";
-import { Check, Cross, HeartPulse, LogOut, MessageCircle, Pill, ShieldAlert, Siren } from "lucide-react";
-import { checkout, emergency, host, problemSteps } from "@/content/guide";
+import { Check, LogOut, MessageCircle } from "lucide-react";
+import { checkout, host, problemSteps } from "@/content/guide";
 import { Button } from "@/components/ui/button";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 import { cn } from "@/lib/utils";
 import { Fill } from "./Fill";
 import { Icon } from "./Icon";
-import { CallButton, MapsButton } from "./LinkButtons";
+import { CallButton } from "./LinkButtons";
 import { Reveal } from "./Reveal";
 import { SectionHeader, SubHeading } from "./SectionHeader";
 import { sectionNav } from "./nav";
@@ -49,27 +49,13 @@ export function Essentials() {
         <SectionHeader
           number={s.number}
           title="Essentials"
-          intro="Check-out, emergencies and how to reach us — all in one place."
+          intro="Check-out and how to reach us — all in one place."
           icon={s.icon}
         />
 
-        {/* The three most important things, always visible */}
-        <div className="grid gap-4 lg:grid-cols-3">
-          <Reveal className="flex flex-col rounded-3xl border-2 border-alert/30 bg-alert-soft p-7">
-            <div className="flex items-center gap-3 text-alert">
-              <Siren className="h-6 w-6" strokeWidth={1.5} aria-hidden />
-              <p className="text-sm font-semibold uppercase tracking-wider">Emergency</p>
-            </div>
-            <p className="mt-4 font-serif text-4xl text-ink">
-              <Fill>{emergency.number}</Fill>
-            </p>
-            <p className="mt-2 text-muted-foreground">Police, ambulance and fire. Free to call, 24 hours a day.</p>
-            <div className="mt-auto pt-6">
-              <CallButton phone={emergency.number} label="Call emergency" variant="destructive" className="w-full" />
-            </div>
-          </Reveal>
-
-          <Reveal delay={80} className="flex flex-col rounded-3xl bg-card p-7 shadow-soft">
+        {/* The two most important things, always visible */}
+        <div className="grid gap-4 lg:grid-cols-2">
+          <Reveal className="flex flex-col rounded-3xl bg-card p-7 shadow-soft">
             <div className="flex items-center gap-3 text-primary">
               <MessageCircle className="h-6 w-6" strokeWidth={1.5} aria-hidden />
               <p className="text-sm font-semibold uppercase tracking-wider">Your host</p>
@@ -93,7 +79,7 @@ export function Essentials() {
             </div>
           </Reveal>
 
-          <Reveal delay={160} className="flex flex-col rounded-3xl bg-card p-7 shadow-soft">
+          <Reveal delay={80} className="flex flex-col rounded-3xl bg-card p-7 shadow-soft">
             <div className="flex items-center gap-3 text-primary">
               <LogOut className="h-6 w-6" strokeWidth={1.5} aria-hidden />
               <p className="text-sm font-semibold uppercase tracking-wider">Check-out</p>
@@ -124,60 +110,6 @@ export function Essentials() {
                 </div>
               </div>
             ))}
-          </Reveal>
-        </div>
-
-        {/* Emergency details */}
-        <div className="mt-20">
-          <Reveal>
-            <SubHeading eyebrow="Just in case">Health & safety</SubHeading>
-          </Reveal>
-          <div className="grid gap-4 md:grid-cols-2">
-            {[
-              { icon: HeartPulse, label: "Nearest hospital", ...emergency.hospital },
-              { icon: Pill, label: "Nearest pharmacy", ...emergency.pharmacy },
-            ].map((p, i) => (
-              <Reveal key={p.label} delay={i * 80} className="rounded-2xl bg-card p-6 shadow-soft sm:p-7">
-                <div className="flex items-center gap-3 text-muted-foreground">
-                  <p.icon className="h-5 w-5 text-primary" strokeWidth={1.5} aria-hidden />
-                  <span className="text-sm font-medium uppercase tracking-wider">{p.label}</span>
-                </div>
-                <p className="mt-3 font-serif text-2xl text-ink">
-                  <Fill>{p.name}</Fill>
-                </p>
-                <p className="mt-1 text-muted-foreground">
-                  <Fill>{p.address}</Fill>
-                </p>
-                <div className="mt-5 flex flex-wrap gap-2">
-                  <MapsButton query={`${p.name} ${p.address}`} size="sm" label="Directions" />
-                  <CallButton phone={p.phone} label="Call" variant="outline" size="sm" />
-                </div>
-              </Reveal>
-            ))}
-          </div>
-          <Reveal className="mt-4 grid gap-4 md:grid-cols-2">
-            <div className="flex gap-4 rounded-2xl bg-secondary p-6">
-              <Cross className="mt-0.5 h-6 w-6 shrink-0 text-primary" strokeWidth={1.5} aria-hidden />
-              <div>
-                <p className="text-lg font-medium text-ink">First-aid kit</p>
-                <p className="mt-1 text-muted-foreground">
-                  <Fill>{emergency.firstAid}</Fill>
-                </p>
-              </div>
-            </div>
-            <div className="flex gap-4 rounded-2xl bg-secondary p-6">
-              <ShieldAlert className="mt-0.5 h-6 w-6 shrink-0 text-primary" strokeWidth={1.5} aria-hidden />
-              <div>
-                <p className="text-lg font-medium text-ink">Safety</p>
-                <ul className="mt-1 space-y-1 text-muted-foreground">
-                  {emergency.safety.map((x) => (
-                    <li key={x}>
-                      <Fill>{x}</Fill>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            </div>
           </Reveal>
         </div>
 

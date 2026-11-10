@@ -178,19 +178,10 @@ export const checkout = {
   ],
 };
 
-export const emergency = {
-  number: "[EMERGENCY NUMBER]",
-  hospital: { name: "[NEAREST HOSPITAL]", address: "[HOSPITAL ADDRESS]", phone: "[HOSPITAL PHONE]" },
-  pharmacy: { name: "[NEAREST PHARMACY]", address: "[PHARMACY ADDRESS]", phone: "[PHARMACY PHONE]" },
-  firstAid: "[LOCATION OF FIRST-AID KIT]",
-  safety: ["[FIRE EXTINGUISHER LOCATION]", "[SMOKE ALARM INFORMATION]", "[EMERGENCY EXIT INFORMATION]"],
-};
-
 export const problemSteps = [
   "Check this guide and the FAQ below — the answer may be here.",
   "Send us a message through Airbnb or call us on the number below.",
   "Tell us what happened and, if you can, send a photo.",
-  "In an emergency, call the emergency number first.",
 ];
 
 export const faqs = [
@@ -198,7 +189,7 @@ export const faqs = [
   { q: "Where do I dispose of rubbish?", a: "[WHERE AND HOW TO DISPOSE OF RUBBISH]" },
   { q: "How do I adjust the heating?", a: "[HOW TO CHANGE THE TEMPERATURE]" },
   { q: "Where can I find extra towels?", a: "[WHERE TO FIND EXTRA TOWELS]" },
-  { q: "What should I do if something stops working?", a: "Don't worry — send us a message through Airbnb or call us. If it's an emergency, call the emergency number first." },
+  { q: "What should I do if something stops working?", a: "Don't worry — send us a message through Airbnb or call us." },
   { q: "Can I check in early or check out late?", a: "[EARLY CHECK-IN / LATE CHECK-OUT POLICY]" },
   { q: "Is there a hairdryer / iron?", a: "[HAIRDRYER AND IRON LOCATION]" },
 ];
