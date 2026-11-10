@@ -28,3 +28,10 @@ use the editor.
   own key and store it in Secrets.
 - **Secrets.** Lovable manages them. Do not put secret values in the repo.
 <!-- LOVABLE:END -->
+
+## Project rules
+
+- All guest-facing welcome book text lives in `src/content/guide.ts`; components only render it. Why: the host can swap placeholders for real details in one place.
+- Missing property details stay as `[UPPERCASE PLACEHOLDERS]` and are rendered through the `Fill` component, which highlights them. Why: never invent property facts.
+- The guide is one scrolling page (`src/routes/index.tsx`) with section anchors; sections are components in `src/components/guide/`. Why: the owner explicitly asked for a single-page guide with jump navigation.
+- Phone and map links go through `src/lib/links.ts` (covered by `links.test.ts`). Why: placeholder numbers must not produce broken call links.

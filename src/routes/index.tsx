@@ -1,23 +1,50 @@
 import { createFileRoute } from "@tanstack/react-router";
+import { BackToTop } from "@/components/guide/BackToTop";
+import { BeforeYouArrive } from "@/components/guide/BeforeYouArrive";
+import { Essentials } from "@/components/guide/Essentials";
+import { Explore } from "@/components/guide/Explore";
+import { Faq } from "@/components/guide/Faq";
+import { Footer } from "@/components/guide/Footer";
+import { StickyNav } from "@/components/guide/StickyNav";
+import { Hero, Welcome } from "@/components/guide/Welcome";
+import { YourStay } from "@/components/guide/YourStay";
 
-// The home route ships no og:image, so serve-time hosting can inject the
-// project's social preview (explicit og:image or latest screenshot).
 export const Route = createFileRoute("/")({
+  head: () => ({
+    meta: [
+      { title: "Welcome Book — Your guide to a comfortable stay" },
+      {
+        name: "description",
+        content:
+          "Everything you need for your stay: check-in, Wi-Fi, house information, local recommendations and essentials.",
+      },
+      { property: "og:title", content: "Welcome Book — Your guide to a comfortable stay" },
+      {
+        property: "og:description",
+        content: "Check-in, Wi-Fi, house information, local tips and essentials — all in one place.",
+      },
+      { property: "og:type", content: "website" },
+      { name: "twitter:card", content: "summary_large_image" },
+    ],
+  }),
   component: Index,
 });
 
-// IMPORTANT: Replace this placeholder. See ./README.md for routing conventions.
 function Index() {
   return (
-    <div
-      className="flex min-h-screen items-center justify-center"
-      style={{ backgroundColor: "#fcfbf8" }}
-    >
-      <img
-        data-lovable-blank-page-placeholder="REMOVE_THIS"
-        src="https://cdn.gpteng.co/blank-app-v1.svg"
-        alt="Your app will live here!"
-      />
-    </div>
+    <>
+      <StickyNav />
+      <main>
+        <Hero />
+        <Welcome />
+        <BeforeYouArrive />
+        <YourStay />
+        <Explore />
+        <Essentials />
+        <Faq />
+      </main>
+      <Footer />
+      <BackToTop />
+    </>
   );
 }
