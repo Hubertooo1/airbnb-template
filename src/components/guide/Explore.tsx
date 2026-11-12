@@ -147,15 +147,28 @@ export function Explore() {
           </Reveal>
           <ul className="mt-10 grid gap-5 md:grid-cols-3">
             {localFavourites.map((f, i) => (
-              <Reveal as="li" key={i} delay={i * 80} className="rounded-2xl bg-card p-6 shadow-soft">
+              <Reveal as="li" key={i} delay={i * 80} className="flex flex-col rounded-2xl bg-card p-6 shadow-soft">
                 <Quote className="h-6 w-6 text-primary" strokeWidth={1.5} aria-hidden />
-                <p className="mt-4 font-serif text-xl text-ink">
+                <p className="eyebrow mt-4">{f.label}</p>
+                <p className="mt-2 font-serif text-xl text-ink">
                   <Fill>{f.title}</Fill>
                 </p>
                 <p className="mt-2 text-muted-foreground">
                   <Fill>{f.note}</Fill>
                 </p>
-                <p className="mt-5 text-sm text-stone">
+                <div className="mt-4 space-y-1 text-sm text-muted-foreground">
+                  <p className="flex items-start gap-1.5">
+                    <MapPin className="mt-0.5 h-4 w-4 shrink-0 text-primary" strokeWidth={1.5} aria-hidden />
+                    {f.address}
+                  </p>
+                  {f.distance && (
+                    <p className="flex items-center gap-1.5">
+                      <DistanceIcon distance={f.distance} />
+                      {f.distance}
+                    </p>
+                  )}
+                </div>
+                <p className="mt-auto pt-5 text-sm text-stone">
                   — <Fill>{host.name}</Fill>
                 </p>
               </Reveal>

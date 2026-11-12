@@ -81,8 +81,8 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { title: "Welcome Book" },
-      { name: "description", content: "A digital welcome book for our guests." },
+      { title: "Villa Apartment – Skælskør — Guest welcome book" },
+      { name: "description", content: "The guest welcome book for Villa Apartment in Skælskør." },
       { name: "theme-color", content: "#F8F6F1" },
     ],
     links: [
