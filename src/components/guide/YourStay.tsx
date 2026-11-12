@@ -1,7 +1,7 @@
 import { Wifi } from "lucide-react";
 import coffeeImg from "@/assets/coffee-breakfast.jpg";
 import bedroomImg from "@/assets/bedroom-evening.jpg";
-import { extraRules, houseInfo, houseRules, wifi } from "@/content/guide";
+import { extraRules, houseInfo, houseRules, stayPhotoBand, wifi } from "@/content/guide";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 import { CopyButton } from "./CopyButton";
 import { Fill } from "./Fill";
@@ -45,11 +45,8 @@ export function YourStay() {
                 </dd>
               </div>
             </dl>
-            <div className="mt-8 flex flex-col gap-4 sm:flex-row sm:items-center">
+            <div className="mt-8">
               <CopyButton value={wifi.password} />
-              <p className="text-sm text-muted-foreground">
-                Router: <Fill>{wifi.routerLocation}</Fill>
-              </p>
             </div>
           </Reveal>
           <Reveal delay={100} className="photo-zoom hidden overflow-hidden rounded-3xl lg:block">
@@ -121,8 +118,8 @@ export function YourStay() {
           />
           <div className="absolute inset-0 bg-gradient-to-t from-overlay via-transparent to-transparent" />
           <div className="absolute bottom-0 left-0 p-6 text-on-photo sm:p-10">
-            <p className="text-sm uppercase tracking-[0.2em]">Extra towels & bedding</p>
-            <p className="mt-2 font-serif text-2xl sm:text-3xl">[WHERE TO FIND EXTRA TOWELS AND LINEN]</p>
+            <p className="text-sm uppercase tracking-[0.2em]">{stayPhotoBand.eyebrow}</p>
+            <p className="mt-2 font-serif text-2xl sm:text-3xl">{stayPhotoBand.text}</p>
           </div>
         </Reveal>
 

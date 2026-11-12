@@ -54,7 +54,7 @@ export function BeforeYouArrive() {
               />
             </figure>
             <figcaption className="mt-3 text-sm text-muted-foreground">
-              The keybox — <Fill>[REPLACE WITH A PHOTO OF YOUR KEYBOX]</Fill>
+              {arrival.keyboxCaption}
             </figcaption>
           </Reveal>
 
