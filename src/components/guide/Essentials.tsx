@@ -68,6 +68,7 @@ export function Essentials() {
               <br />
               <Fill>{host.availability}</Fill>
             </p>
+            <p className="mt-3 text-muted-foreground">{host.contactNote}</p>
             <div className="mt-auto flex flex-col gap-2 pt-6">
               <CallButton phone={host.phone} label="Call host" className="w-full" />
               <Button asChild variant="outline" className="w-full">

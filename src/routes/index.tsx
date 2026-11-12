@@ -1,4 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
+import { property } from "@/content/guide";
 import { BackToTop } from "@/components/guide/BackToTop";
 import { BeforeYouArrive } from "@/components/guide/BeforeYouArrive";
 import { Essentials } from "@/components/guide/Essentials";
@@ -12,13 +13,13 @@ import { YourStay } from "@/components/guide/YourStay";
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: "Welcome Book — Your guide to a comfortable stay" },
+      { title: `${property.shortName} — Guest welcome book` },
       {
         name: "description",
         content:
-          "Everything you need for your stay: check-in, Wi-Fi, house information, local recommendations and essentials.",
+          "Everything you need for your stay in Skælskør: check-in, Wi-Fi, house information, local tips and check-out.",
       },
-      { property: "og:title", content: "Welcome Book — Your guide to a comfortable stay" },
+      { property: "og:title", content: `${property.shortName} — Guest welcome book` },
       {
         property: "og:description",
         content: "Check-in, Wi-Fi, house information, local tips and essentials — all in one place.",

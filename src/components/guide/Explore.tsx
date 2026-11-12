@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Bus, Footprints, Quote } from "lucide-react";
+import { Car, Footprints, MapPin, Quote } from "lucide-react";
 import streetImg from "@/assets/local-street.jpg";
 import restaurantImg from "@/assets/explore-restaurant.jpg";
 import attractionImg from "@/assets/explore-attraction.jpg";
@@ -10,6 +10,7 @@ import {
   exploreCategories,
   host,
   localFavourites,
+  neighbourhood,
   recommendations,
   type ExploreCategory,
   type Recommendation,
@@ -21,35 +22,36 @@ import { Reveal } from "./Reveal";
 import { SectionHeader, SubHeading } from "./SectionHeader";
 import { sectionNav } from "./nav";
 
-const images: Record<NonNullable<Recommendation["image"]>, string> = {
+const images: Record<Recommendation["image"], string> = {
   restaurant: restaurantImg,
   attraction: attractionImg,
+  nature: attractionImg,
   shopping: shoppingImg,
   market: marketImg,
   activity: activityImg,
 };
 
+/** Walking icon when the place is within walking distance, car icon otherwise. */
+function DistanceIcon({ distance }: { distance: string }) {
+  const Cmp = distance.includes("on foot") ? Footprints : Car;
+  return <Cmp className="h-4 w-4 shrink-0 text-primary" strokeWidth={1.5} aria-hidden />;
+}
+
 function RecommendationCard({ rec }: { rec: Recommendation }) {
   return (
     <article className="group flex h-full flex-col overflow-hidden rounded-2xl border border-border bg-card shadow-soft transition-shadow duration-300 hover:shadow-lift">
-      {rec.image ? (
-        <div className="photo-zoom aspect-[4/3] overflow-hidden">
-          <img
-            src={images[rec.image]}
-            alt=""
-            width={1024}
-            height={768}
-            loading="lazy"
-            className="h-full w-full object-cover"
-          />
-        </div>
-      ) : (
-        <div className="flex aspect-[4/3] items-center justify-center bg-secondary">
-          <Bus className="h-12 w-12 text-primary" strokeWidth={1.25} aria-hidden />
-        </div>
-      )}
+      <div className="photo-zoom aspect-[4/3] overflow-hidden">
+        <img
+          src={images[rec.image]}
+          alt=""
+          width={1024}
+          height={768}
+          loading="lazy"
+          className="h-full w-full object-cover"
+        />
+      </div>
       <div className="flex flex-1 flex-col p-6">
-        <p className="eyebrow">{rec.category}</p>
+        <p className="eyebrow">{rec.label ?? rec.category}</p>
         <h3 className="mt-2 text-2xl">
           <Fill>{rec.name}</Fill>
         </h3>
@@ -60,12 +62,10 @@ function RecommendationCard({ rec }: { rec: Recommendation }) {
           <p>
             <Fill>{rec.address}</Fill>
           </p>
-          {rec.distance && (
-            <p className="flex items-center gap-1.5">
-              <Footprints className="h-4 w-4 text-primary" strokeWidth={1.5} aria-hidden />
-              <Fill>{rec.distance}</Fill>
-            </p>
-          )}
+          <p className="flex items-center gap-1.5">
+            <DistanceIcon distance={rec.distance} />
+            <Fill>{rec.distance}</Fill>
+          </p>
         </div>
         <div className="mt-auto pt-6">
           <MapsButton query={`${rec.name} ${rec.address}`} size="sm" />
@@ -102,8 +102,8 @@ export function Explore() {
           <div className="absolute inset-0 bg-gradient-to-t from-overlay via-transparent to-transparent" />
           <div className="absolute bottom-0 left-0 max-w-xl p-6 text-on-photo sm:p-10">
             <p className="text-sm uppercase tracking-[0.2em]">The neighbourhood</p>
-            <p className="mt-2 font-serif text-2xl sm:text-4xl">[NEIGHBOURHOOD NAME]</p>
-            <p className="mt-2 hidden text-on-photo/90 sm:block">[A SHORT DESCRIPTION OF THE AREA]</p>
+            <p className="mt-2 font-serif text-2xl sm:text-4xl">{neighbourhood.name}</p>
+            <p className="mt-2 hidden text-on-photo/90 sm:block">{neighbourhood.description}</p>
           </div>
         </Reveal>
 
@@ -147,15 +147,28 @@ export function Explore() {
           </Reveal>
           <ul className="mt-10 grid gap-5 md:grid-cols-3">
             {localFavourites.map((f, i) => (
-              <Reveal as="li" key={i} delay={i * 80} className="rounded-2xl bg-card p-6 shadow-soft">
+              <Reveal as="li" key={i} delay={i * 80} className="flex flex-col rounded-2xl bg-card p-6 shadow-soft">
                 <Quote className="h-6 w-6 text-primary" strokeWidth={1.5} aria-hidden />
-                <p className="mt-4 font-serif text-xl text-ink">
+                <p className="eyebrow mt-4">{f.label}</p>
+                <p className="mt-2 font-serif text-xl text-ink">
                   <Fill>{f.title}</Fill>
                 </p>
                 <p className="mt-2 text-muted-foreground">
                   <Fill>{f.note}</Fill>
                 </p>
-                <p className="mt-5 text-sm text-stone">
+                <div className="mt-4 space-y-1 text-sm text-muted-foreground">
+                  <p className="flex items-start gap-1.5">
+                    <MapPin className="mt-0.5 h-4 w-4 shrink-0 text-primary" strokeWidth={1.5} aria-hidden />
+                    {f.address}
+                  </p>
+                  {f.distance && (
+                    <p className="flex items-center gap-1.5">
+                      <DistanceIcon distance={f.distance} />
+                      {f.distance}
+                    </p>
+                  )}
+                </div>
+                <p className="mt-auto pt-5 text-sm text-stone">
                   — <Fill>{host.name}</Fill>
                 </p>
               </Reveal>

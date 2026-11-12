@@ -44,7 +44,7 @@ export function StickyNav() {
           tabIndex={shown ? 0 : -1}
           className="hidden shrink-0 font-serif text-xl text-ink lg:block"
         >
-          {property.name}
+          {property.shortName}
         </a>
         <ul className="grid flex-1 grid-cols-4 lg:ml-auto lg:flex lg:flex-none lg:gap-1">
           {navSections.map((s) => {

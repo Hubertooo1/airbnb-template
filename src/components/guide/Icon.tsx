@@ -14,7 +14,6 @@ import {
   Tv,
   Users,
   Utensils,
-  WashingMachine,
   Zap,
   Circle,
   type LucideIcon,
@@ -36,7 +35,6 @@ const icons: Record<string, LucideIcon> = {
   tv: Tv,
   users: Users,
   utensils: Utensils,
-  "washing-machine": WashingMachine,
   zap: Zap,
 };
 
